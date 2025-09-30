@@ -1,30 +1,9 @@
-import { useState } from "react";
 import Todo from "./Todo";
 import TodoInput from "./TodoInput";
+import useTodos from "../../hooks/useTodos";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: Number(new Date()),
-      content: "안녕하세요",
-    },
-  ]);
-
-  const addTodo = ({ content }) => {
-    const newTodo = {
-      id: Number(new Date()),
-      content: content,
-    };
-    setTodos((prev) => [...prev, newTodo]);
-  };
-
-  const deleteTodo = ({ id }) => {
-    setTodos((prev) => prev.filter((el) => el.id !== id));
-  };
-
-  const modifyTodo = ({ id, content }) => {
-    setTodos((prev) => prev.map((el) => (el.id === id ? { ...el, content: content } : el)));
-  };
+  const { todos, addTodo, deleteTodo, modifyTodo } = useTodos();
 
   return (
     <div>
