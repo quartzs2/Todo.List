@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import formatTime from "../utils/formatTime";
+import { formattedTime } from "../utils";
 
 const UPDATE_INTERVAL_MS = 1000;
 
@@ -32,7 +32,7 @@ const StopWatch = () => {
 
   return (
     <div>
-      {formatTime(time)}
+      {formattedTime(time)}
       <button onClick={handleToggle}>{isOn ? "끄기" : "켜기"}</button>
       <button onClick={handleReset}>리셋</button>
     </div>

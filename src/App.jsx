@@ -6,7 +6,7 @@ function App() {
     <>
       <Clock />
       <StopWatch />
-      {/* <Timer /> */}
+      <Timer />
       <TodoList />
     </>
   );
