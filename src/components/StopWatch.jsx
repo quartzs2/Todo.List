@@ -1,35 +1,40 @@
 import { useState, useEffect, useRef } from "react";
 import formatTime from "../utils/formatTime";
 
+const UPDATE_INTERVAL_MS = 1000;
+
 const StopWatch = () => {
   const [time, setTime] = useState(0);
   const [isOn, setIsOn] = useState(false);
   const timerRef = useRef(null);
-  console.log(timerRef);
 
   useEffect(() => {
-    if (isOn === true) {
+    if (isOn) {
       const timerId = setInterval(() => {
         setTime((prev) => prev + 1);
-      }, 1000);
+      }, UPDATE_INTERVAL_MS);
       timerRef.current = timerId;
     } else {
       clearInterval(timerRef.current);
+      timerRef.current = null;
     }
+    return () => clearInterval(timerRef.current);
   }, [isOn]);
+
+  const handleReset = () => {
+    setTime(0);
+    setIsOn(false);
+  };
+
+  const handleToggle = () => {
+    setIsOn((prev) => !prev);
+  };
 
   return (
     <div>
       {formatTime(time)}
-      <button onClick={() => setIsOn((prev) => !prev)}>{isOn ? "끄기" : "켜기"}</button>
-      <button
-        onClick={() => {
-          setTime(0);
-          setIsOn(false);
-        }}
-      >
-        리셋
-      </button>
+      <button onClick={handleToggle}>{isOn ? "끄기" : "켜기"}</button>
+      <button onClick={handleReset}>리셋</button>
     </div>
   );
 };
