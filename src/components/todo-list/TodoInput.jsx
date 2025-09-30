@@ -1,19 +1,17 @@
 import { useRef } from "react";
 
-const TodoInput = ({ setTodo }) => {
+const TodoInput = ({ addTodo }) => {
   const inputRef = useRef(null);
-  const addTodo = () => {
-    const newTodo = {
-      id: Number(new Date()),
-      content: inputRef.current.value,
-    };
-    setTodo((prev) => [...prev, newTodo]);
+
+  const handleAddTodo = () => {
+    addTodo({ content: inputRef.current.value });
+    inputRef.current.value = "";
   };
 
   return (
     <>
       <input ref={inputRef} />
-      <button onClick={addTodo}>추가</button>
+      <button onClick={handleAddTodo}>추가</button>
     </>
   );
 };

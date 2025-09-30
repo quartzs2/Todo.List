@@ -1,14 +1,12 @@
-const Todo = ({ todo, setTodo }) => {
+const Todo = ({ todo, deleteTodo }) => {
+  const handleDeleteTodo = () => {
+    deleteTodo({ id: todo.id });
+  };
+
   return (
     <li>
       {todo.content}
-      <button
-        onClick={() => {
-          setTodo((prev) => prev.filter((el) => el.id !== todo.id));
-        }}
-      >
-        삭제
-      </button>
+      <button onClick={handleDeleteTodo}>삭제</button>
     </li>
   );
 };

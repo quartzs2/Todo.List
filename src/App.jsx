@@ -4,9 +4,9 @@ import { Clock, StopWatch, Timer, TodoList } from "./components";
 function App() {
   return (
     <>
-      <Clock />
+      {/* <Clock />
       <StopWatch />
-      <Timer />
+      <Timer /> */}
       <TodoList />
     </>
   );
